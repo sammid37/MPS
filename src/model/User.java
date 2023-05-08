@@ -6,29 +6,29 @@ public class User {
   private String password;
 
   // construtor, getters e setters para os atributos acima
-  void public User(int id, String login, String password){
+  public User(int id, String login, String password){
     this.id = id;
     this.login = login;
     this.password = password;
   }
 
-  String public getLogin(){
+  public String getLogin(){
     return this.login;
   }
 
-  void public setLogin(String newLogin){
+  public void setLogin(String newLogin){
     this.login = newLogin;
   }
 
-  String public getPassword(){
+  public String getPassword(){
     return this.password;
   }
 
-  void public setPassword(String newPassword){
+  public void setPassword(String newPassword){
     this.password = newPassword;
   }
 
-  int public getId(){
+  public int getId(){
     return this.id;
   }
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.LinkedList;
 
 public class Seller extends User {
   private String shopName;
@@ -9,34 +10,26 @@ public class Seller extends User {
 
   // construtor, getters e setters para os atributos acima
   // métodos para adicionar e remover produtos
-  void public Seller(String shopName, String cnpj, int id, int login, int password){
+  public Seller(String shopName, String cnpj, int id, String login, String password){
     super(id, login, password);
     this.shopName = shopName;
-    this.cpnj = cpnj;
+    this.cnpj = cnpj;
     this.products = new LinkedList<Product>();
   }
 
-  String public getShopName(){
+  public String getShopName(){
     return this.shopName;
   }
 
-  void public setShopName(String newShopName){
+  public void setShopName(String newShopName){
     this.shopName = newShopName;
   }
 
-  String public getCnpj(){
+  public String getCnpj(){
     return this.cnpj;
   }
 
-  void public setCnpj(String newCnpj){
+  public void setCnpj(String newCnpj){
     this.cnpj = newCnpj;
-  }
-
-  void public addProduct(String productName){
-    this.products.add(productName);
-  }
-
-  void public removeProduct(String productName){
-    this.products.remove(productName)
   }
 }
