@@ -1,31 +1,37 @@
 package model;
 
+import java.util.ArrayList;
+
+
 public class ManagerClient {
-    private List<Cliente> clientes;
+    private List<Client> clients;
 
     public ManagerClient() {
-        this.clientes = new ArrayList<>();
+        this.clients = new ArrayList<>();
     }
 
-    public void adicionarCliente(Cliente cliente) {
-        this.clientes.add(cliente);
+    public void addClient(Client client) {
+        this.clients.add(client);
     }
 
-    public void removerCliente(Cliente cliente) {
-        this.clientes.remove(cliente);
+    public void removeClient(Client client) {
+        this.clients.remove(client);
     }
 
-    public void atualizarCliente(Cliente cliente) {
+    public void updateClient(Client client) {
         // implementar lógica para atualizar informações do cliente
     }
 
+    public Client findClientByName(Strinf name){
+        for(Client client: clients){
+            if(cleints.getClientName() == name) return client;
+        }
+        return null;
+    }
+    
     public List<Pedido> getPedidos(Cliente cliente) {
         // implementar lógica para retornar lista de pedidos do cliente
         return null;
     }
 
-    public List<Pedido> getHistoricoCompras(Cliente cliente) {
-        // implementar lógica para retornar histórico de compras do cliente
-        return null;
-    }
 }
