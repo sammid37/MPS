@@ -5,7 +5,6 @@ public class User {
   private String login;
   private String password;
 
-  // construtor, getters e setters para os atributos acima
   public User(int id, String login, String password){
     this.id = id;
     this.login = login;
@@ -30,5 +29,9 @@ public class User {
 
   public int getId(){
     return this.id;
+  }
+
+  public void setId(int id){
+    this.id = id;
   }
 }
