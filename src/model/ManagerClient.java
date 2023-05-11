@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class ManagerClient {
     private List<Client> clients;
@@ -22,14 +22,15 @@ public class ManagerClient {
         // implementar lógica para atualizar informações do cliente
     }
 
-    public Client findClientByName(Strinf name){
+    // * CORRIGIR
+    public Client findClientByName(String name){
         for(Client client: clients){
-            if(cleints.getClientName() == name) return client;
+            if(clients.getName() == name) return client;
         }
         return null;
     }
     
-    public List<Pedido> getPedidos(Cliente cliente) {
+    public List<Order> getPedidos(Client cliente) {
         // implementar lógica para retornar lista de pedidos do cliente
         return null;
     }
