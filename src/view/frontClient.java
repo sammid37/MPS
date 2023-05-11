@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Scanner;
+
 public class frontClient {
   private Scanner reader;
   public frontClient(){
@@ -20,17 +22,17 @@ public class frontClient {
 
     try{
       int optionInt = reader.nextInt();
+      if(optionInt == 1){
+        registrationMenu();
+      }
+      else{
+        // nada por enquanto
+      }
     }
     catch(Exception e){
       System.out.println("Erro " + e + " encontrado. Tente novamente.");
     }
 
-    if(optionInt == 1){
-      registrationMenu();
-    }
-    else{
-      // nada por enquanto
-    }
   } // da pra aplicar strategy nessas classes do modulo view se permanecermos nesse formato
 
   public void registrationMenu(){
