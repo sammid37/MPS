@@ -1,14 +1,21 @@
 package controller;
 
+import model.Client;
+import model.Seller;
 import model.User;
 
 /*
- /todo
+ * Singleton Facade de Gerenciamento de Usuários
+ Declarada como final para impedir que outras classes possam 
+ estendê-la e criar outras fachadas para gerenciamento de usuários
  */
-
-public class ManagerFacade {
+public final class ManagerFacade {
   private static ManagerFacade instance;
-
+  
+  private UserDAO userDAO = UserDAO.getInstance();
+  private SellerDAO sellerDAO = SellerDAO.getInstance();
+  private ClientDAO clientDAO = ClientDAO.getInstance();
+  
   private ManagerFacade() {}
 
   public static ManagerFacade getInstance() {
@@ -19,22 +26,38 @@ public class ManagerFacade {
   }
 
   public void createUser(User user) {
-    UserDAO userDAO = new UserDAO();
-    userDAO.createUser(user);
+    if (user instanceof Client) {
+      clientDAO.createClient((Client) user);
+    } else if (user instanceof Seller) {
+      sellerDAO.createSeller((Seller) user);
+    } else {
+      UserDAO userDAO = new UserDAO();
+      userDAO.createUser(user);
+    }
+
   }
 
   public User readUser(int id) {
-    UserDAO userDAO = new UserDAO();
     return userDAO.readUser(id);
   }
 
   public void updateUser(User user) {
-    UserDAO userDAO = new UserDAO();
-    userDAO.updateUser(user);
+    if (user instanceof Client) {
+      clientDAO.updateClient((Client) user);
+    } else if (user instanceof Seller) {
+        sellerDAO.updateSeller((Seller) user);
+    } else {
+        userDAO.updateUser(user);
+    }
   }
 
   public void deleteUser(User user) {
-    UserDAO userDAO = new UserDAO();
-    userDAO.deleteUser(user);
+    if (user instanceof Client) {
+      clientDAO.deleteClient((Client) user);
+    } else if (user instanceof Seller) {
+        sellerDAO.deleteSeller((Seller) user);
+    } else {
+        userDAO.deleteUser(user);
+    }
   }
 }
