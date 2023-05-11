@@ -6,7 +6,14 @@ import model.User;
 
 public class UserDAO {
   private List<User> users = new ArrayList<>();
-  // Funções de um CRUD
+
+  private static UserDAO instance = null;
+  public static UserDAO getInstance() {
+    if (instance == null) {
+      instance = new UserDAO();
+    }
+    return instance;
+  }
 
   public void createUser(User user) {
     // Adiciona o usuário à lista
