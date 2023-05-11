@@ -1,8 +1,8 @@
-package controller;
+package business.controller;
 
-import model.Client;
-import model.Seller;
-import model.User;
+import business.model.Client;
+import business.model.Seller;
+import business.model.User;
 
 /*
  * Singleton Facade de Gerenciamento de Usuários

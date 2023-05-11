@@ -1,9 +1,9 @@
-package controller;
+package business.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Seller;
+import business.model.Seller;
 
 public class SellerDAO {
   private List<Seller> sellers = new ArrayList<>();

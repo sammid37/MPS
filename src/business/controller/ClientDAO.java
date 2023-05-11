@@ -1,9 +1,9 @@
-package controller;
+package business.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Client;
+import business.model.Client;
 
 public class ClientDAO {
   private List<Client> clients = new ArrayList<>();

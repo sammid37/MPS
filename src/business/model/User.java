@@ -1,14 +1,24 @@
-package model;
+package business.model;
 
-public class User {
+public abstract class User {
+  private String name;
   private int id;
   private String login;
   private String password;
 
-  public User(int id, String login, String password){
+  public User(String name, int id, String login, String password){
+    this.name = name;
     this.id = id;
     this.login = login;
     this.password = password;
+  }
+
+  public String getName(){
+    return this.name;
+  }
+
+  public void setName(String name){
+    this.name = name;
   }
 
   public String getLogin(){

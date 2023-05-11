@@ -1,8 +1,9 @@
-package controller;
+package business.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.User;
+
+import business.model.User;
 
 public class UserDAO {
   private List<User> users = new ArrayList<>();
