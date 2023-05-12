@@ -22,10 +22,9 @@ public class ManagerClient {
         // implementar lógica para atualizar informações do cliente
     }
 
-    // * CORRIGIR
     public Client findClientByName(String name){
         for(Client client: clients){
-            if(clients.getName() == name) return client;
+            if(client.getName() == name) return client;
         }
         return null;
     }
