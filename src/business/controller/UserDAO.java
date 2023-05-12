@@ -21,7 +21,7 @@ public class UserDAO {
     users.add(user);
   }
 
-  public User readUser(int id) {
+  public User findUserById(int id) {
     // Busca o usuário na lista pelo ID
     for (User user : users) {
       if (user.getId() == id) {
@@ -32,7 +32,7 @@ public class UserDAO {
   }
 
   public void updateUser(User user) {
-    // Busca o usuário na lista pelo ID
+    // Atualiza o usuário
     for (int i = 0; i < users.size(); i++) {
       if (users.get(i).getId() == user.getId()) {
         // Atualiza o usuário na lista

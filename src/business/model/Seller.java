@@ -8,6 +8,11 @@ public class Seller extends User {
     this.cnpj = cnpj;
   }
 
+  @Override
+  public int getAccessLevel() {
+    return User.SELLER;
+  }
+
   public String getCnpj() {
     return this.cnpj;
   }

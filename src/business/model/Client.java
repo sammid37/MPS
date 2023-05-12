@@ -8,6 +8,11 @@ public class Client extends User {
     this.cpf = cpf;
   }
 
+  @Override
+  public int getAccessLevel() {
+    return User.CLIENT;
+  }
+
   public String getCpf(){
     return this.cpf;
   }

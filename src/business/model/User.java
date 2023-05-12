@@ -1,6 +1,9 @@
 package business.model;
 
 public abstract class User {
+  public static final int CLIENT = 0;
+  public static final int SELLER = 1;
+
   private String name;
   private int id;
   private String login;
@@ -12,6 +15,8 @@ public abstract class User {
     this.login = login;
     this.password = password;
   }
+
+  public abstract int getAccessLevel();
 
   public String getName(){
     return this.name;
