@@ -1,6 +1,9 @@
 package business.controller;
 
 import business.model.User;
+import util.InfraException;
+import util.LoginInvalidException;
+import util.PasswordInvalidException;
 
 /*
  * Singleton Facade de Gerenciamento de Usuários
@@ -9,24 +12,24 @@ import business.model.User;
  */
 public final class ManagerFacade {
   private static ManagerFacade instance;
+  private UserDAO userDAO;
 
-  private UserDAO userDAO = UserDAO.getInstance();
-
-  private ManagerFacade() {
+  private ManagerFacade() throws InfraException {
+    userDAO = UserDAO.getInstance();
   }
 
-  public static ManagerFacade getInstance() {
+  public static ManagerFacade getInstance() throws InfraException {
     if (instance == null) {
       instance = new ManagerFacade();
     }
     return instance;
   }
 
-  public void createClient(String[] args) {
+  public void createClient(String... args) throws LoginInvalidException, PasswordInvalidException {
     userDAO.createClient(args);
   }
 
-  public void createSeller(String[] args) {
+  public void createSeller(String... args) throws LoginInvalidException, PasswordInvalidException {
     userDAO.createSeller(args);
   }
 
@@ -34,7 +37,7 @@ public final class ManagerFacade {
     return userDAO.findUser(id);
   }
 
-  public void updateUser(String id, String[] args) {
+  public void updateUser(String id, String... args) {
     userDAO.updateUser(id, args);
   }
 
