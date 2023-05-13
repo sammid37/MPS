@@ -3,8 +3,8 @@ package business.model;
 public class Client extends User {
   private String cpf;
 
-  public Client(String name, String cpf, int id, String login, String password){
-    super(name, id, login, password);
+  public Client(String name, String cpf, String login, String password) {
+    super(name, login, password);
     this.cpf = cpf;
   }
 
@@ -13,12 +13,11 @@ public class Client extends User {
     return User.CLIENT;
   }
 
-  public String getCpf(){
+  public String getCpf() {
     return this.cpf;
   }
 
-  public void setCpf(String cpf){
+  public void setCpf(String cpf) {
     this.cpf = cpf;
   }
 }
-  

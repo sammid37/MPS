@@ -22,19 +22,23 @@ public final class ManagerFacade {
     return instance;
   }
 
-  public void createUser(User user) {
-    userDAO.createUser(user);
+  public void createClient(String[] args) {
+    userDAO.createClient(args);
   }
 
-  public User readUser(int id) {
-    return userDAO.findUserById(id);
+  public void createSeller(String[] args) {
+    userDAO.createSeller(args);
   }
 
-  public void updateUser(User user) {
-    userDAO.updateUser(user);
+  public User readUser(String id) {
+    return userDAO.findUser(id);
   }
 
-  public void deleteUser(User user) {
-    userDAO.deleteUser(user);
+  public void updateUser(String id, String[] args) {
+    userDAO.updateUser(id, args);
+  }
+
+  public void deleteUser(String id) {
+    userDAO.deleteUser(id);
   }
 }

@@ -1,14 +1,20 @@
 package business.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
+import business.model.Client;
+import business.model.Seller;
 import business.model.User;
 
 public class UserDAO {
-  private List<User> users = new ArrayList<>();
+  private HashMap<String, User> users;
+
+  private UserDAO() {
+    users = new HashMap<String, User>();
+  }
 
   private static UserDAO instance = null;
+
   public static UserDAO getInstance() {
     if (instance == null) {
       instance = new UserDAO();
@@ -16,34 +22,27 @@ public class UserDAO {
     return instance;
   }
 
-  public void createUser(User user) {
+  public void createClient(String[] args) {
     // Adiciona o usuário à lista
-    users.add(user);
+    users.put(args[0], new Client(args[1], args[2], args[3], args[4]));
   }
 
-  public User findUserById(int id) {
-    // Busca o usuário na lista pelo ID
-    for (User user : users) {
-      if (user.getId() == id) {
-        return user;
-      }
-    }
-    return null;
+  public void createSeller(String[] args) {
+    // Adiciona o usuário à lista
+    users.put(args[0], new Seller(args[1], args[2], args[3], args[4]));
   }
 
-  public void updateUser(User user) {
+  public User findUser(String id) {
+    return users.get(id);
+  }
+
+  public void updateUser(String id, String[] args) {
     // Atualiza o usuário
-    for (int i = 0; i < users.size(); i++) {
-      if (users.get(i).getId() == user.getId()) {
-        // Atualiza o usuário na lista
-        users.set(i, user);
-        break;
-      }
-    }
+    // To Do
   }
 
-  public void deleteUser(User user) {
+  public void deleteUser(String id) {
     // Remove o usuário da lista
-    users.remove(user);
+    users.remove(id);
   }
 }

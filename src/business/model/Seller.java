@@ -3,8 +3,8 @@ package business.model;
 public class Seller extends User {
   private String cnpj;
 
-  public Seller(String name, String cnpj, int id, String login, String password) {
-    super(name, id, login, password);
+  public Seller(String name, String cnpj, String login, String password) {
+    super(name, login, password);
     this.cnpj = cnpj;
   }
 
