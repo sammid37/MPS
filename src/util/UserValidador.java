@@ -1,5 +1,10 @@
 package util;
 
+import util.exceptions.CnpjInvalidException;
+import util.exceptions.CpfInvalidException;
+import util.exceptions.LoginInvalidException;
+import util.exceptions.PasswordInvalidException;
+
 public class UserValidador {
 
   public static void validateLogin(String login) throws LoginInvalidException {
@@ -23,6 +28,20 @@ public class UserValidador {
       throw new PasswordInvalidException("Senha deve possuir caracteres e numeros!\n");
     else if (countNumbers(pass) < 2)
       throw new PasswordInvalidException("Senha deve ter pelo menos 2 numeros!\n");
+  }
+
+  public static void validateCpf(String cpf) throws CpfInvalidException {
+    if (cpf.length() != 11)
+      throw new CpfInvalidException("Cpf deve possuir exatamente 11 caracteres!\n");
+    else if (countNumbers(cpf) != cpf.length())
+      throw new CpfInvalidException("Cpf so pode possuir digitos!\n");
+  }
+
+  public static void validateCnpj(String cnpj) throws CnpjInvalidException {
+    if (cnpj.length() != 14)
+      throw new CnpjInvalidException("Cnpj deve possuir exatamente 14 caracteres!\n");
+    else if (countNumbers(cnpj) != cnpj.length())
+      throw new CnpjInvalidException("Cnpj so pode possuir digitos!\n");
   }
 
   private static int countNumbers(String s) {

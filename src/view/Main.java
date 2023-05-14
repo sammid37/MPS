@@ -1,7 +1,7 @@
 package view;
 // Arquivo Principal
 
-import util.InfraException;
+import util.exceptions.InfraException;
 
 public class Main {
 

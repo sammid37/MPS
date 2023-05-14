@@ -1,19 +1,24 @@
 package view;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
-import business.controller.ManagerFacade;
-import util.InfraException;
-import util.LoginInvalidException;
-import util.PasswordInvalidException;
+import business.controller.UserManagerFacade;
+import factories.ControllerFactory;
+import util.exceptions.CnpjInvalidException;
+import util.exceptions.CpfInvalidException;
+import util.exceptions.InfraException;
+import util.exceptions.LoginInvalidException;
+import util.exceptions.PasswordInvalidException;
 
 public class FrontClient {
   private Scanner reader;
-  private ManagerFacade manager;
+  private UserManagerFacade manager;
 
   public FrontClient() throws InfraException {
     this.reader = new Scanner(System.in);
-    manager = ManagerFacade.getInstance();
+    manager = ControllerFactory.newUserManagerFacade();
   }
 
   public void menuMessage() {
@@ -42,7 +47,8 @@ public class FrontClient {
   } // da pra aplicar strategy nessas classes do modulo view se permanecermos nesse
     // formato
 
-  public void registrationMenu() throws LoginInvalidException, PasswordInvalidException {
+  public void registrationMenu()
+      throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException, CpfInvalidException {
     System.out.println("----------------------------------------------");
     System.out.println("             Cadastrar um Cliente             ");
     System.out.println("----------------------------------------------");
@@ -58,13 +64,15 @@ public class FrontClient {
     System.out.println("               Insira o seu CPF               ");
     String cpf = reader.next();
 
-    manager.createSeller(id, name, cpf, login, password);
+    Map<String, String> c = new HashMap<>();
+    c.put("id", id);
+    c.put("name", name);
+    c.put("cpf", cpf);
+    c.put("login", login);
+    c.put("password", password);
+
+    manager.createUser(c);
+
     System.out.println(manager.readUser(id).getAccessLevel());
-    // simulação de cadastro, pois o cadastro esta a ser resolvido
-    // System.out.println("Nome: " + name);
-    // System.out.println("CPF: " + cpf);
-    // System.out.println("Login: " + login);
-    // System.out.println("Senha: " + password);
-    // System.out.println("ID: " + id);
   }
 }

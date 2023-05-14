@@ -1,4 +1,4 @@
-package util;
+package util.exceptions;
 
 public class InfraException extends Exception {
 

@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import business.model.User;
-import util.InfraException;
+import util.exceptions.InfraException;
 
 public class UserFile {
 
@@ -53,6 +53,7 @@ public class UserFile {
     }
   }
 
+  @SuppressWarnings("unchecked")
   public Map<String, User> loadUsers() throws InfraException {
     Map<String, User> users = new HashMap<String, User>();
     File file = new File("user.bin");
