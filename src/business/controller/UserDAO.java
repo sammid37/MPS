@@ -1,13 +1,10 @@
 package business.controller;
 
 import java.util.Map;
-import business.model.Client;
-import business.model.Seller;
 import business.model.User;
 import factories.InfraFactory;
 import factories.ModelFactory;
 import infra.UserFile;
-import util.UserValidador;
 import util.exceptions.CnpjInvalidException;
 import util.exceptions.CpfInvalidException;
 import util.exceptions.InfraException;

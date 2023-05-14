@@ -2,7 +2,8 @@ package business.controller;
 
 import java.util.Map;
 
-import business.model.User;
+import business.model.Client;
+import business.model.Seller;
 import factories.ControllerFactory;
 import util.exceptions.CnpjInvalidException;
 import util.exceptions.CpfInvalidException;
@@ -35,8 +36,12 @@ public final class UserManagerFacade {
     userDAO.createUser(c);
   }
 
-  public User readUser(String id) {
-    return userDAO.findUser(id);
+  public Client getClient(String id) {
+    return (Client)userDAO.findUser(id);
+  }
+
+  public Seller getSeller(String id) {
+    return (Seller)userDAO.findUser(id);
   }
 
   public void updateUser(String id, String... args) {

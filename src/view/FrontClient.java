@@ -73,6 +73,9 @@ public class FrontClient {
 
     manager.createUser(c);
 
-    System.out.println(manager.readUser(id).getAccessLevel());
+    System.out.println();
+    System.out.println(manager.getClient(id).getAccessLevel());
+    System.out.println(manager.getClient(id).getCpf());
+    System.out.println(manager.getClient(id).getLogin());
   }
 }
