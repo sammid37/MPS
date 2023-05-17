@@ -1,49 +1,51 @@
 package business.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Map;
 import business.model.User;
+import factories.InfraFactory;
+import factories.ModelFactory;
+import infra.UserFile;
+import util.exceptions.CnpjInvalidException;
+import util.exceptions.CpfInvalidException;
+import util.exceptions.InfraException;
+import util.exceptions.LoginInvalidException;
+import util.exceptions.PasswordInvalidException;
 
 public class UserDAO {
-  private List<User> users = new ArrayList<>();
+  private Map<String, User> users;
+  UserFile userFile;
+
+  private UserDAO() throws InfraException {
+    userFile = InfraFactory.newUserFile();
+    users = userFile.loadUsers();
+  }
 
   private static UserDAO instance = null;
-  public static UserDAO getInstance() {
+
+  public static UserDAO getInstance() throws InfraException {
     if (instance == null) {
       instance = new UserDAO();
     }
     return instance;
   }
 
-  public void createUser(User user) {
-    // Adiciona o usuário à lista
-    users.add(user);
+  public void createUser(Map<String, String> c)
+      throws LoginInvalidException, PasswordInvalidException, CpfInvalidException, CnpjInvalidException {
+    users.put(c.get("id"), ModelFactory.newUser(c));
   }
 
-  public User readUser(int id) {
-    // Busca o usuário na lista pelo ID
-    for (User user : users) {
-      if (user.getId() == id) {
-        return user;
-      }
-    }
-    return null;
+  // problema: o objeto retornado não tem acesso a cpf/cnpj
+  public User findUser(String id) {
+    return users.get(id);
   }
 
-  public void updateUser(User user) {
-    // Busca o usuário na lista pelo ID
-    for (int i = 0; i < users.size(); i++) {
-      if (users.get(i).getId() == user.getId()) {
-        // Atualiza o usuário na lista
-        users.set(i, user);
-        break;
-      }
-    }
+  public void updateUser(String id, String[] args) {
+    // Atualiza o usuário
+    // To Do
   }
 
-  public void deleteUser(User user) {
+  public void deleteUser(String id) {
     // Remove o usuário da lista
-    users.remove(user);
+    users.remove(id);
   }
 }

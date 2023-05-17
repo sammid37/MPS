@@ -1,14 +1,27 @@
 package view;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
-public class frontClient {
+import business.controller.UserManagerFacade;
+import factories.ControllerFactory;
+import util.exceptions.CnpjInvalidException;
+import util.exceptions.CpfInvalidException;
+import util.exceptions.InfraException;
+import util.exceptions.LoginInvalidException;
+import util.exceptions.PasswordInvalidException;
+
+public class FrontClient {
   private Scanner reader;
-  public frontClient(){
-   this.reader = new Scanner(System.in);
+  private UserManagerFacade manager;
+
+  public FrontClient() throws InfraException {
+    this.reader = new Scanner(System.in);
+    manager = ControllerFactory.newUserManagerFacade();
   }
 
-  public void menuMessage(){
+  public void menuMessage() {
     System.out.println("----------------------------------------------");
     System.out.println("           Little Hot Pot - Cliente           ");
     System.out.println("----------------------------------------------");
@@ -20,29 +33,30 @@ public class frontClient {
     System.out.println("----------------------------------------------");
     System.out.println("          Digite o número da opção:           ");
 
-    try{
+    try {
       int optionInt = reader.nextInt();
-      if(optionInt == 1){
+      if (optionInt == 1) {
         registrationMenu();
-      }
-      else{
+      } else {
         // nada por enquanto
       }
-    }
-    catch(Exception e){
+    } catch (Exception e) {
       System.out.println("Erro " + e + " encontrado. Tente novamente.");
     }
 
-  } // da pra aplicar strategy nessas classes do modulo view se permanecermos nesse formato
+  } // da pra aplicar strategy nessas classes do modulo view se permanecermos nesse
+    // formato
 
-  public void registrationMenu(){
+  public void registrationMenu()
+      throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException, CpfInvalidException {
     System.out.println("----------------------------------------------");
     System.out.println("             Cadastrar um Cliente             ");
     System.out.println("----------------------------------------------");
     System.out.println("       Insira o código de identificação       ");
-    int id = reader.nextInt();
+    String id = reader.next();
     System.out.println("           Insira o login desejado            ");
-    String login = reader.next();
+    reader.nextLine();
+    String login = reader.nextLine();
     System.out.println("           Insira a senha desejada            ");
     String password = reader.nextLine();
     System.out.println("          Insira o seu nome completo          ");
@@ -50,11 +64,18 @@ public class frontClient {
     System.out.println("               Insira o seu CPF               ");
     String cpf = reader.next();
 
-    // simulação de cadastro, pois o cadastro esta a ser resolvido
-    System.out.println("Nome: " + name);
-    System.out.println("CPF: " + cpf);
-    System.out.println("Login: " + login);
-    System.out.println("Senha: " + password);
-    System.out.println("ID: " + id);
+    Map<String, String> c = new HashMap<>();
+    c.put("id", id);
+    c.put("name", name);
+    c.put("cpf", cpf);
+    c.put("login", login);
+    c.put("password", password);
+
+    manager.createUser(c);
+
+    System.out.println();
+    System.out.println(manager.getClient(id).getAccessLevel());
+    System.out.println(manager.getClient(id).getCpf());
+    System.out.println(manager.getClient(id).getLogin());
   }
 }

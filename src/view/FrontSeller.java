@@ -2,14 +2,14 @@ package view;
 
 import java.util.Scanner;
 
-public class frontSeller {
+public class FrontSeller {
   private Scanner reader;
-  
-  public frontSeller(){
-   this.reader = new Scanner(System.in);
+
+  public FrontSeller() {
+    this.reader = new Scanner(System.in);
   }
 
-  public void menuMessage(){
+  public void menuMessage() {
     System.out.println("----------------------------------------------");
     System.out.println("          Little Hot Pot - Vendedor           ");
     System.out.println("----------------------------------------------");
@@ -21,22 +21,21 @@ public class frontSeller {
     System.out.println("----------------------------------------------");
     System.out.println("          Digite o número da opção:           ");
 
-    try{
+    try {
       int optionInt = reader.nextInt();
-      if(optionInt == 1){
+      if (optionInt == 1) {
         registrationMenu();
-      }
-      else{
+      } else {
         // nada por enquanto
       }
-    }
-    catch(Exception e){
+    } catch (Exception e) {
       System.out.println("Erro " + e + " encontrado. Tente novamente.");
     }
 
-  } // da pra aplicar strategy nessas classes do modulo view se permanecermos nesse formato
+  } // da pra aplicar strategy nessas classes do modulo view se permanecermos nesse
+    // formato
 
-  public void registrationMenu(){
+  public void registrationMenu() {
     System.out.println("----------------------------------------------");
     System.out.println("            Cadastrar um Vendedor             ");
     System.out.println("----------------------------------------------");
