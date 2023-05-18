@@ -15,3 +15,12 @@ public class Main {
 
   }
 }
+
+
+/*
+OrderTemplate snackOrder = new SnackOrder();
+snackOrder.processOrder();
+
+OrderTemplate mealOrder = new MealOrder();
+mealOrder.processOrder();
+ */
