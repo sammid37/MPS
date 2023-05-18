@@ -12,11 +12,11 @@ import util.exceptions.InfraException;
 import util.exceptions.LoginInvalidException;
 import util.exceptions.PasswordInvalidException;
 
-public class FrontClient {
+public class ClientInterface implements FrontInterface {
   private Scanner reader;
   private UserManagerFacade manager;
 
-  public FrontClient() throws InfraException {
+  public ClientInterface() throws InfraException {
     this.reader = new Scanner(System.in);
     manager = ControllerFactory.newUserManagerFacade();
   }

@@ -2,10 +2,10 @@ package view;
 
 import java.util.Scanner;
 
-public class FrontSeller {
+public class SellerInterface implements FrontInterface {
   private Scanner reader;
 
-  public FrontSeller() {
+  public SellerInterface() {
     this.reader = new Scanner(System.in);
   }
 
