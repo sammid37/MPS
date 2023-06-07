@@ -11,3 +11,26 @@ Tendo esse problema em vista, despertou-se a ideia de uma aplicação capaz de r
 * Maria Victória Grisi Pinheiro Fabião de Áraujo
 * Mayra Daher de Carvalho Pereira
 * Samantha Dantas Medeiros
+
+## Implementação 
+O seguinte trabalho foi desenvolvido para aplicar os padrões de projeto lecionado na disciplina de Métodos de Projeto de Software.
+
+### Padrões de Projeto Utilizados
+* Adapter
+* Command
+* Façade
+* Factory
+* Template
+
+## Execução
+
+1. Compile todos os arquivos
+
+```bash
+javac .\src\business\controller\*.java .\src\business\model\*.java .\src\business\template\*.java .\src\factories\*.java .\src\infra\*.java .\src\util\exceptions\*.java .\src\util\*.java .\src\view\*.java
+```
+
+2. Execute o arquivo principal
+```bash
+java view.Main
+```

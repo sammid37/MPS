@@ -1,4 +1,4 @@
-package view;
+package view.Client;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +11,7 @@ import util.exceptions.CpfInvalidException;
 import util.exceptions.InfraException;
 import util.exceptions.LoginInvalidException;
 import util.exceptions.PasswordInvalidException;
+import view.FrontInterface;
 
 public class ClientInterface implements FrontInterface {
   private Scanner reader;

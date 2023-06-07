@@ -2,6 +2,8 @@ package view;
 // Arquivo Principal
 
 import util.exceptions.InfraException;
+import view.Client.ClientInterface;
+import view.Seller.SellerInterface;
 
 public class Main {
 
@@ -12,6 +14,11 @@ public class Main {
     System.out.println("Little Hot Pot");
     clientInterface.menuMessage();
     sellerInterface.menuMessage();
+
+    /*
+    UserInterface userInterface = new UserInterface(clientInterface, sellerInterface);
+    userInterface.showInitialScreen();
+    */
 
   }
 }
