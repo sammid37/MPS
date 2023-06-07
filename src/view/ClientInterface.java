@@ -47,8 +47,7 @@ public class ClientInterface implements FrontInterface {
   } // da pra aplicar strategy nessas classes do modulo view se permanecermos nesse
     // formato
 
-  public void registrationMenu()
-      throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException, CpfInvalidException {
+  public void registrationMenu() throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException, CpfInvalidException {
     System.out.println("----------------------------------------------");
     System.out.println("             Cadastrar um Cliente             ");
     System.out.println("----------------------------------------------");
