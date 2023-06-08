@@ -2,6 +2,7 @@ package business.controller;
 
 import java.util.Map;
 
+import business.model.User;
 import business.model.Client;
 import business.model.Seller;
 import business.model.UserList;
@@ -46,12 +47,46 @@ public final class UserManagerFacade {
   }
 
   public void updateUser(String id, String... args) {
-    // userList.updateUser(id, args);
-  }
-
+    User user = userList.findUser(id);
+    if (user != null) {
+      if (user instanceof Seller) {
+        Seller seller = (Seller) user;
+        // Atualize os atributos do vendedor com os novos valores
+        // seller.setCnpj(args[0]);
+        // seller.setName(args[1]);
+        // ...
+        System.out.println("Vendedor atualizado com sucesso!");
+      } else if (user instanceof Client) {
+        Client client = (Client) user;
+        // Atualize os atributos do cliente com os novos valores
+        // client.setCpf(args[0]);
+        // client.setName(args[1]);
+        // ...
+        System.out.println("Cliente atualizado com sucesso!");
+      } else {
+        System.out.println("Tipo de usuário não reconhecido.");
+      }
+    } else {
+      System.out.println("Usuário não encontrado.");
+    }
+  }  
+  
   public void deleteUser(String id) {
     userList.deleteUser(id);
   }
-
-  // list all users
+  
+  public void listUsers() {
+    System.out.println("Lista de Usuários:");
+    for (User user : userList.getUsers().values()) {
+      if (user instanceof Seller) {
+        Seller seller = (Seller) user;
+        System.out.println("Vendedor: " + seller.getName() + " (CNPJ: " + seller.getCnpj() + ")");
+      } else if (user instanceof Client) {
+        Client client = (Client) user;
+        System.out.println("Cliente: " + client.getName() + " (CPF: " + client.getCpf() + ")");
+      } else {
+        System.out.println("Tipo de usuário não reconhecido.");
+      }
+    }
+  }
 }

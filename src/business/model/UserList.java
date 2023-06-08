@@ -32,6 +32,7 @@ public class UserList {
   public void createUser(Map<String, String> user)
       throws LoginInvalidException, PasswordInvalidException, CpfInvalidException, CnpjInvalidException {
     users.put(user.get("id"), ModelFactory.newUser(user));
+    saveUsers(); // Salvar os usuários após a criação de um novo usuário
   }
 
   public User findUser(String id) {
@@ -39,9 +40,19 @@ public class UserList {
   }
 
   public void updateUser() {
+    saveUsers(); // Salvar os usuários após a atualização
   }
 
   public void deleteUser(String id) {
     users.remove(id);
+    saveUsers(); // Salvar os usuários após a atualização
+  }
+
+  private void saveUsers() {
+    userFile.saveUsers(users);
+  }
+
+  public Map<String, User> getUsers() {
+    return users;
   }
 }
