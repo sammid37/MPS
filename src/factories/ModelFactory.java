@@ -1,9 +1,9 @@
 package factories;
 
 import java.util.Map;
-import java.util.jar.Attributes.Name;
 
 import business.model.Client;
+import business.model.Item;
 import business.model.Seller;
 import business.model.User;
 import util.UserValidador;
@@ -11,20 +11,26 @@ import util.exceptions.CnpjInvalidException;
 import util.exceptions.CpfInvalidException;
 import util.exceptions.LoginInvalidException;
 import util.exceptions.PasswordInvalidException;
+import util.exceptions.PriceInvalidException;
 
 public class ModelFactory {
-  public static User newUser(Map<String, String> c)
+  public static User newUser(Map<String, String> user)
       throws CpfInvalidException, LoginInvalidException, PasswordInvalidException, CnpjInvalidException {
     // user data validation
-    UserValidador.validateLogin(c.get("login"));
-    UserValidador.validatePassword(c.get("password"));
+    UserValidador.validateLogin(user.get("login"));
+    UserValidador.validatePassword(user.get("password"));
 
-    if (c.containsKey("cpf")) {
-      UserValidador.validateCpf(c.get("cpf"));
-      return new Client(c.get("name"), c.get("cpf"), c.get("login"), c.get("password"));
+    if (user.containsKey("cpf")) {
+      UserValidador.validateCpf(user.get("cpf"));
+      return new Client(user.get("name"), user.get("cpf"), user.get("login"), user.get("password"));
     } else {
-      UserValidador.validateCnpj(c.get("cnpj"));
-      return new Seller(c.get("name"), c.get("cnpj"), c.get("login"), c.get("password"));
+      UserValidador.validateCnpj(user.get("cnpj"));
+      return new Seller(user.get("name"), user.get("cnpj"), user.get("login"), user.get("password"));
     }
+  }
+
+  public static Item newItem(Map<String, String> item) throws PriceInvalidException {
+    UserValidador.validatePrice(item.get("price"));
+    return new Item(item.get("name"), Double.parseDouble(item.get("price")));
   }
 }
