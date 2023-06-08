@@ -4,6 +4,7 @@ import java.util.Map;
 
 import business.model.Client;
 import business.model.Seller;
+import business.model.UserList;
 import factories.ControllerFactory;
 import util.exceptions.CnpjInvalidException;
 import util.exceptions.CpfInvalidException;
@@ -18,10 +19,10 @@ import util.exceptions.PasswordInvalidException;
  */
 public final class UserManagerFacade {
   private static UserManagerFacade instance;
-  private UserDAO userDAO;
+  private UserList userList;
 
   private UserManagerFacade() throws InfraException {
-    userDAO = ControllerFactory.newUserDao();
+    userList = ControllerFactory.newUserList();
   }
 
   public static UserManagerFacade getInstance() throws InfraException {
@@ -33,23 +34,23 @@ public final class UserManagerFacade {
 
   public void createUser(Map<String, String> c)
       throws LoginInvalidException, PasswordInvalidException, CpfInvalidException, CnpjInvalidException {
-    userDAO.createUser(c);
+    userList.createUser(c);
   }
 
   public Client getClient(String id) {
-    return (Client)userDAO.findUser(id);
+    return (Client) userList.findUser(id);
   }
 
   public Seller getSeller(String id) {
-    return (Seller)userDAO.findUser(id);
+    return (Seller) userList.findUser(id);
   }
 
   public void updateUser(String id, String... args) {
-    userDAO.updateUser(id, args);
+    // userList.updateUser(id, args);
   }
 
   public void deleteUser(String id) {
-    userDAO.deleteUser(id);
+    userList.deleteUser(id);
   }
 
   // list all users

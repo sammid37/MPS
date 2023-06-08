@@ -4,6 +4,7 @@ import util.exceptions.CnpjInvalidException;
 import util.exceptions.CpfInvalidException;
 import util.exceptions.LoginInvalidException;
 import util.exceptions.PasswordInvalidException;
+import util.exceptions.PriceInvalidException;
 
 public class UserValidador {
 
@@ -42,6 +43,14 @@ public class UserValidador {
       throw new CnpjInvalidException("Cnpj deve possuir exatamente 14 caracteres!\n");
     else if (countNumbers(cnpj) != cnpj.length())
       throw new CnpjInvalidException("Cnpj so pode possuir digitos!\n");
+  }
+
+  public static void validatePrice(String price) throws PriceInvalidException {
+    try {
+      Double.parseDouble(price);
+    } catch (NumberFormatException e) {
+      throw new PriceInvalidException("O preço deve ser um numero real");
+    }
   }
 
   private static int countNumbers(String s) {

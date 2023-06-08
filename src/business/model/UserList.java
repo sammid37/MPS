@@ -1,7 +1,7 @@
-package business.controller;
+package business.model;
 
 import java.util.Map;
-import business.model.User;
+
 import factories.InfraFactory;
 import factories.ModelFactory;
 import infra.UserFile;
@@ -11,41 +11,37 @@ import util.exceptions.InfraException;
 import util.exceptions.LoginInvalidException;
 import util.exceptions.PasswordInvalidException;
 
-public class UserDAO {
+public class UserList {
   private Map<String, User> users;
   UserFile userFile;
 
-  private UserDAO() throws InfraException {
+  private UserList() throws InfraException {
     userFile = InfraFactory.newUserFile();
     users = userFile.loadUsers();
   }
 
-  private static UserDAO instance = null;
+  private static UserList instance = null;
 
-  public static UserDAO getInstance() throws InfraException {
+  public static UserList getInstance() throws InfraException {
     if (instance == null) {
-      instance = new UserDAO();
+      instance = new UserList();
     }
     return instance;
   }
 
-  public void createUser(Map<String, String> c)
+  public void createUser(Map<String, String> user)
       throws LoginInvalidException, PasswordInvalidException, CpfInvalidException, CnpjInvalidException {
-    users.put(c.get("id"), ModelFactory.newUser(c));
+    users.put(user.get("id"), ModelFactory.newUser(user));
   }
 
-  // problema: o objeto retornado não tem acesso a cpf/cnpj
   public User findUser(String id) {
     return users.get(id);
   }
 
-  public void updateUser(String id, String[] args) {
-    // Atualiza o usuário
-    // To Do
+  public void updateUser() {
   }
 
   public void deleteUser(String id) {
-    // Remove o usuário da lista
     users.remove(id);
   }
 }
