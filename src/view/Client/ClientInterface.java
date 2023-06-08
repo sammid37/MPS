@@ -6,20 +6,28 @@ import java.util.Scanner;
 
 import business.controller.UserManagerFacade;
 import factories.ControllerFactory;
-import util.exceptions.CnpjInvalidException;
-import util.exceptions.CpfInvalidException;
 import util.exceptions.InfraException;
-import util.exceptions.LoginInvalidException;
-import util.exceptions.PasswordInvalidException;
+import view.Command;
 import view.FrontInterface;
+import view.ExitCommand;
 
 public class ClientInterface implements FrontInterface {
   private Scanner reader;
   private UserManagerFacade manager;
+  private Map<Integer, Command> commandMap;
+
 
   public ClientInterface() throws InfraException {
     this.reader = new Scanner(System.in);
     manager = ControllerFactory.newUserManagerFacade();
+    initializeCommandMap();
+  }
+
+  private void initializeCommandMap() {
+    commandMap = new HashMap<>();
+    commandMap.put(1, new ClientRegisterCommand(this));
+    commandMap.put(2, new ClientLoginCommand(this));
+    commandMap.put(3, new ExitCommand(this));
   }
 
   public void menuMessage() {
@@ -29,53 +37,46 @@ public class ClientInterface implements FrontInterface {
     System.out.println("       Selecione uma das opções abaixo:       ");
     System.out.println("----------------------------------------------");
     System.out.println("  1 - Cadastrar cliente                       ");
-    System.out.println("  2 - A definir                               ");
-    System.out.println("  3 - A definir                               ");
+    System.out.println("  2 - Login do cliente                        ");
+    System.out.println("  3 - Sair                                    ");
     System.out.println("----------------------------------------------");
     System.out.println("          Digite o número da opção:           ");
 
     try {
       int optionInt = reader.nextInt();
-      if (optionInt == 1) {
-        registrationMenu();
+      if (commandMap.containsKey(optionInt)) {
+        Command command = commandMap.get(optionInt);
+        command.execute();
       } else {
-        // nada por enquanto
+        System.out.println("Opção indisponível. Tente novamente.");
       }
     } catch (Exception e) {
       System.out.println("Erro " + e + " encontrado. Tente novamente.");
     }
+  }
 
-  } // da pra aplicar strategy nessas classes do modulo view se permanecermos nesse
-    // formato
-
-  public void registrationMenu() throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException, CpfInvalidException {
+  public void registrationMenu() {
     System.out.println("----------------------------------------------");
-    System.out.println("             Cadastrar um Cliente             ");
+    System.out.println("         Little Hot Pot - Client Side         ");
     System.out.println("----------------------------------------------");
-    System.out.println("       Insira o código de identificação       ");
-    String id = reader.next();
-    System.out.println("           Insira o login desejado            ");
-    reader.nextLine();
-    String login = reader.nextLine();
-    System.out.println("           Insira a senha desejada            ");
-    String password = reader.nextLine();
-    System.out.println("          Insira o seu nome completo          ");
-    String name = reader.nextLine();
-    System.out.println("               Insira o seu CPF               ");
-    String cpf = reader.next();
+    System.out.println(">>> REGISTER");
+  }
 
-    Map<String, String> c = new HashMap<>();
-    c.put("id", id);
-    c.put("name", name);
-    c.put("cpf", cpf);
-    c.put("login", login);
-    c.put("password", password);
+  public void loginMenu() {
+    System.out.println("----------------------------------------------");
+    System.out.println("         Little Hot Pot - Client Side         ");
+    System.out.println("----------------------------------------------");
+    System.out.println(">>> LOGIN");
+  }
 
-    manager.createUser(c);
-
-    System.out.println();
-    System.out.println(manager.getClient(id).getAccessLevel());
-    System.out.println(manager.getClient(id).getCpf());
-    System.out.println(manager.getClient(id).getLogin());
+  public void operationsMenu() {
+    System.out.println("----------------------------------------------");
+    System.out.println("         Little Hot Pot - Client Side         ");
+    System.out.println("----------------------------------------------");
+    System.out.println(">>> Operations");
+    System.out.println("1 - Order Meal or Snacks");
+    System.out.println("2 - Update Account");
+    System.out.println("3 - Logout");
+    System.out.print("\nType an option: ");
   }
 }

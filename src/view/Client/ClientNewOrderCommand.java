@@ -1,15 +1,21 @@
 package view.Client;
+
+import java.util.Scanner;
+
 import view.Command;
 
-import util.exceptions.CpfInvalidException;
-import util.exceptions.CnpjInvalidException;
-import util.exceptions.LoginInvalidException;
-import util.exceptions.PasswordInvalidException;
-
 public class ClientNewOrderCommand implements Command {
+  private ClientInterface clientInterface;
+  private Scanner reader; // leitura de dados
+
+  public ClientNewOrderCommand(ClientInterface clientInterface) {
+    this.clientInterface = clientInterface;
+
+  }
 
   @Override
-  public void execute() throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException, CpfInvalidException {
-    System.out.println("LOGIN Client");
+  public void execute() {
+    // ! Inserir lógica para realizar pedidos do usuário Client
+    System.out.println("New Order Client");
   }
 }

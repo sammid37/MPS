@@ -1,11 +1,8 @@
 package view;
 
-import util.exceptions.CnpjInvalidException;
-import util.exceptions.CpfInvalidException;
-import util.exceptions.LoginInvalidException;
-import util.exceptions.PasswordInvalidException;
-
 public interface FrontInterface {
   void menuMessage();
-  void registrationMenu() throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException, CpfInvalidException ;
+  void registrationMenu();
+  void loginMenu();
+  void operationsMenu(); // Menu de operações para cada tipo de usuário (Client e Seller)
 }

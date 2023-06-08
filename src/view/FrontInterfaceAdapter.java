@@ -1,10 +1,5 @@
 package view;
 
-import util.exceptions.CnpjInvalidException;
-import util.exceptions.CpfInvalidException;
-import util.exceptions.LoginInvalidException;
-import util.exceptions.PasswordInvalidException;
-
 public class FrontInterfaceAdapter implements FrontInterface {
   private FrontInterface frontInterface; // ou SellerInterface, dependendo do tipo de usuário
 
@@ -18,7 +13,17 @@ public class FrontInterfaceAdapter implements FrontInterface {
   }
 
   @Override
-  public void registrationMenu() throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException, CpfInvalidException {
+  public void registrationMenu() {
     frontInterface.registrationMenu();
+  }
+
+  @Override
+  public void loginMenu() {
+    frontInterface.loginMenu();
+  }
+
+  @Override
+  public void operationsMenu() {
+    frontInterface.operationsMenu();
   }
 }

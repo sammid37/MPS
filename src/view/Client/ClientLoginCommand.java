@@ -1,26 +1,35 @@
 package view.Client;
 
-import util.exceptions.CnpjInvalidException;
-import util.exceptions.CpfInvalidException;
-import util.exceptions.LoginInvalidException;
-import util.exceptions.PasswordInvalidException;
+import java.util.Scanner;
+
 import view.Command;
-import view.FrontInterfaceAdapter;
 
 public class ClientLoginCommand implements Command {
-  private FrontInterfaceAdapter clientInterface;
+  private ClientInterface clientInterface;
+  private Scanner reader; // leitura de dados
 
-  public ClientLoginCommand(FrontInterfaceAdapter clientInterface) {
+  // Construtor
+  public ClientLoginCommand(ClientInterface clientInterface) {
     this.clientInterface = clientInterface;
   }
 
+  // Implementação do comando
   @Override
-  public void execute() throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException, CpfInvalidException {
-    System.out.println("LOGIN Client");
+  public void execute() {
+    clientInterface.loginMenu(); // exibe menu
+    System.out.print("Username: ");
+    String username_input = reader.nextLine();
+    System.out.print("Senha: ");
+    String password_input = reader.nextLine();
 
-    clientInterface.menuMessage();
-    clientInterface.registrationMenu();
-    // outras operações
-
+    /*//? Implementar limite de 3 tentativas
+    if (username_input.doesExist()) { // ! implementar verificação se o usernama existe no DB
+      if (password_input.doesMatchUsername()) { // ! implementar verificação se o usernama existe no DB
+        System.out.println("Login bem sucedido. Bem vindo, <nome>!");
+        clientInterface.operationsMenu(); // Chama o menu de operações
+      } else {
+        System.out.println("Username ou senha incorretos. Tente novamente. ");
+      }
+    }*/
   }
 }

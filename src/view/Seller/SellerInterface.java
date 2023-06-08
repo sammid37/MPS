@@ -2,6 +2,7 @@ package view.Seller;
 
 import java.util.Scanner;
 
+import util.exceptions.CnpjInvalidException;
 import view.FrontInterface;
 
 public class SellerInterface implements FrontInterface {
@@ -37,23 +38,13 @@ public class SellerInterface implements FrontInterface {
     }
 
   }
-  
-  public void loginMenu() {
-    System.out.println("----------------------------------------------");
-    System.out.println("                 Login Seller                 ");
-    System.out.println("----------------------------------------------");
-    System.out.println("Login: ");
-    System.out.println("Senha: ");
 
-    // Regra login, max 3 tentativas
-    // Se login bem sucedido, leva para o CRUD de cardapio
-    // Se não, exibe mensagem de que não foi possível efetuar o login
-  }
-
-  public void registrationMenu() {
+  // ! REALIZAR MESMO PROCEDIMENTO DE CLIENT
+  public void registrationMenu() throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException {
     System.out.println("----------------------------------------------");
-    System.out.println("            Cadastrar um Seller             ");
+    System.out.println("         Little Hot Pot - Seller Side         ");
     System.out.println("----------------------------------------------");
+    System.out.println(">>> REGISTER");
     System.out.println("       Insira o código de identificação       ");
     int id = reader.nextInt();
     System.out.println("           Insira o login desejado            ");
@@ -71,5 +62,20 @@ public class SellerInterface implements FrontInterface {
     System.out.println("Login: " + login);
     System.out.println("Senha: " + password);
     System.out.println("ID: " + id);
+  }
+
+  public void loginMenu() {
+    System.out.println("----------------------------------------------");
+    System.out.println("         Little Hot Pot - Seller Side         ");
+    System.out.println("----------------------------------------------");
+    System.out.println(">>> LOGIN");
+  }
+
+  public void operationsMenu() {
+    System.out.println("----------------------------------------------");
+    System.out.println("         Little Hot Pot - Seller Side         ");
+    System.out.println("----------------------------------------------");
+    System.out.println(">>> Manage Orders from your clients and Products");
+    System.out.println("\nWould you like to read the instructions? ");
   }
 }
