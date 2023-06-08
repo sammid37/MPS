@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import factories.ModelFactory;
+import util.exceptions.PriceInvalidException;
 
 public class Client extends User {
   private Map<String, Item> order;
@@ -28,7 +29,7 @@ public class Client extends User {
     this.cpf = cpf;
   }
 
-  public void addItemToOrder(Map<String, String> item) {
+  public void addItemToOrder(Map<String, String> item) throws PriceInvalidException {
     order.put(item.get("id"), ModelFactory.newItem(item));
   }
 
@@ -49,5 +50,11 @@ public class Client extends User {
       total += item.getPrice();
     }
     return total;
+  }
+
+  public void listAllOrderItems() {
+    for (Item item : order.values()) {
+      System.out.println(item.getName());
+    }
   }
 }

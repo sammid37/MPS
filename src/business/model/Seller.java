@@ -3,6 +3,7 @@ package business.model;
 import java.util.HashMap;
 import java.util.Map;
 import factories.ModelFactory;
+import util.exceptions.PriceInvalidException;
 
 public class Seller extends User {
   private Map<String, Item> menu;
@@ -27,7 +28,7 @@ public class Seller extends User {
     this.cnpj = cnpj;
   }
 
-  public void addItemToMenu(Map<String, String> item) {
+  public void addItemToMenu(Map<String, String> item) throws PriceInvalidException {
     // validar: checar se o item já existe
     menu.put(item.get("id"), ModelFactory.newItem(item));
   }
@@ -41,5 +42,11 @@ public class Seller extends User {
 
   public void deleteMenuItem(String id) {
     menu.remove(id);
+  }
+
+  public void listAllMenuItems() {
+    for (Item item : menu.values()) {
+      System.out.println(item.getName());
+    }
   }
 }

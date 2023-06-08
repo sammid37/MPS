@@ -11,6 +11,7 @@ import util.exceptions.CnpjInvalidException;
 import util.exceptions.CpfInvalidException;
 import util.exceptions.LoginInvalidException;
 import util.exceptions.PasswordInvalidException;
+import util.exceptions.PriceInvalidException;
 
 public class ModelFactory {
   public static User newUser(Map<String, String> user)
@@ -28,8 +29,8 @@ public class ModelFactory {
     }
   }
 
-  public static Item newItem(Map<String, String> item) {
-    // validar price (checar se eh int)
+  public static Item newItem(Map<String, String> item) throws PriceInvalidException {
+    UserValidador.validatePrice(item.get("price"));
     return new Item(item.get("name"), Double.parseDouble(item.get("price")));
   }
 }
