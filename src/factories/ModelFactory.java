@@ -4,7 +4,6 @@ import java.util.Map;
 
 import business.model.Client;
 import business.model.Item;
-import business.model.Menu;
 import business.model.Seller;
 import business.model.User;
 import util.UserValidador;
@@ -31,10 +30,6 @@ public class ModelFactory {
 
   public static Item newItem(Map<String, String> item) {
     // validar price (checar se eh int)
-    return new Item(item.get("name"), Integer.parseInt(item.get("price")));
-  }
-
-  public static Menu newMenu() {
-    return new Menu();
+    return new Item(item.get("name"), Double.parseDouble(item.get("price")));
   }
 }

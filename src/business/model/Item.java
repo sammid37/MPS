@@ -2,9 +2,9 @@ package business.model;
 
 public class Item {
   private String name;
-  private int price;
+  private double price;
 
-  public Item(String name, int price) {
+  public Item(String name, double price) {
     this.name = name;
     this.price = price;
   }
@@ -17,11 +17,11 @@ public class Item {
     this.name = name;
   }
 
-  public int getPrice() {
+  public double getPrice() {
     return price;
   }
 
-  public void setPrice(int price) {
+  public void setPrice(double price) {
     this.price = price;
   }
 }
