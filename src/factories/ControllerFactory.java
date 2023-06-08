@@ -1,7 +1,7 @@
 package factories;
 
-import business.controller.UserDAO;
 import business.controller.UserManagerFacade;
+import business.model.UserList;
 import util.exceptions.InfraException;
 
 public class ControllerFactory {
@@ -9,7 +9,7 @@ public class ControllerFactory {
     return UserManagerFacade.getInstance();
   }
 
-  public static UserDAO newUserDao() throws InfraException {
-    return UserDAO.getInstance();
+  public static UserList newUserList() throws InfraException {
+    return UserList.getInstance();
   }
 }
