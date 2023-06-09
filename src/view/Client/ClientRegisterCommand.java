@@ -16,8 +16,10 @@ public class ClientRegisterCommand implements Command {
   private Scanner reader; // leitura de dados
   
   // Construtor
-  public ClientRegisterCommand(ClientInterface clientInterface) {
+  public ClientRegisterCommand(ClientInterface clientInterface, UserManagerFacade manager, Scanner reader) {
     this.clientInterface = clientInterface;
+    this.manager = manager;
+    this.reader = reader;
   }
 
   // Implementação do comando

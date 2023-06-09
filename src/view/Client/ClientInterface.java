@@ -25,8 +25,8 @@ public class ClientInterface implements FrontInterface {
 
   private void initializeCommandMap() {
     commandMap = new HashMap<>();
-    commandMap.put(1, new ClientRegisterCommand(this));
-    commandMap.put(2, new ClientLoginCommand(this));
+    commandMap.put(1, new ClientRegisterCommand(this, manager, reader));
+    commandMap.put(2, new ClientLoginCommand(this, reader));
     commandMap.put(3, new ExitCommand(this));
   }
 

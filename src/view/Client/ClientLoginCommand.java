@@ -11,8 +11,9 @@ public class ClientLoginCommand implements Command {
   private Scanner reader; // leitura de dados
 
   // Construtor
-  public ClientLoginCommand(ClientInterface clientInterface) {
+  public ClientLoginCommand(ClientInterface clientInterface, Scanner reader) {
     this.clientInterface = clientInterface;
+    this.reader = reader;
   }
 
   // Implementação do comando

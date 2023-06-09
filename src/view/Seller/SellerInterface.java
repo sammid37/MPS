@@ -26,8 +26,8 @@ public SellerInterface() throws InfraException{
 
   private void InitializeCommandMap() {
     commandMap = new HashMap<>();
-    commandMap.put(1, new SellerRegisterCommand(this));
-    commandMap.put(2, new SellerLoginCommand(this));
+    // commandMap.put(1, new SellerRegisterCommand(this));
+    // commandMap.put(2, new SellerLoginCommand(this));
     commandMap.put(3, new ExitCommand(this));
   }
   
