@@ -1,5 +1,6 @@
 package business.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import factories.InfraFactory;
@@ -16,8 +17,9 @@ public class UserList {
   UserFile userFile;
 
   private UserList() throws InfraException {
-    userFile = InfraFactory.newUserFile();
-    users = userFile.loadUsers();
+    //userFile = InfraFactory.newUserFile();
+    //users = userFile.loadUsers();
+    users = new HashMap<>();
   }
 
   private static UserList instance = null;
@@ -32,7 +34,7 @@ public class UserList {
   public void createUser(Map<String, String> user)
       throws LoginInvalidException, PasswordInvalidException, CpfInvalidException, CnpjInvalidException {
     users.put(user.get("id"), ModelFactory.newUser(user));
-    saveUsers(); // Salvar os usuários após a criação de um novo usuário
+    // saveUsers(); // Salvar os usuários após a criação de um novo usuário
   }
 
   public User findUser(String id) {
@@ -40,16 +42,16 @@ public class UserList {
   }
 
   public void updateUser() {
-    saveUsers(); // Salvar os usuários após a atualização
+    // saveUsers(); // Salvar os usuários após a atualização
   }
 
   public void deleteUser(String id) {
     users.remove(id);
-    saveUsers(); // Salvar os usuários após a atualização
+    // saveUsers(); // Salvar os usuários após a atualização
   }
 
   private void saveUsers() {
-    userFile.saveUsers(users);
+    // userFile.saveUsers(users);
   }
 
   public Map<String, User> getUsers() {

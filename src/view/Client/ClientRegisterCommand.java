@@ -43,6 +43,7 @@ public class ClientRegisterCommand implements Command {
     try {
       manager.createUser(c);
       System.out.println("Usuário criado com sucesso!");
+      clientInterface.menuMessage();
     } catch (LoginInvalidException | PasswordInvalidException | CpfInvalidException | CnpjInvalidException e) {
       System.out.println("Erro ao criar o usuário: " + e.getMessage());
     }
