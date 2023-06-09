@@ -12,7 +12,9 @@ public class Main {
     FrontInterface clientInterface = new FrontInterfaceAdapter(new ClientInterface());
     FrontInterface sellerInterface = new FrontInterfaceAdapter(new SellerInterface());
 
-    System.out.println("Little Hot Pot");
+    System.out.println("----------------------------------------------");
+    System.out.println("                Little Hot Pot                ");
+    System.out.println("----------------------------------------------");
 
     int userType = getUserType(); 
 
@@ -32,9 +34,10 @@ public class Main {
     // Você pode usar o seguinte código como ponto de partida:
    
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Selecione o tipo de usuário:");
+    System.out.println("Selecione o tipo de usuário");
     System.out.println("1 - Cliente");
     System.out.println("2 - Vendedor");
+    System.out.print(">>> ");
     
     int userType = scanner.nextInt();
     scanner.nextLine();
