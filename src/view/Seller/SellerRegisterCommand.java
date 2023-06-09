@@ -1,4 +1,4 @@
-package view.Client;
+package view.Seller;
 
 import java.util.Scanner;
 import java.util.Map;
@@ -16,16 +16,14 @@ public class ClientRegisterCommand implements Command {
   private Scanner reader; // leitura de dados
   
   // Construtor
-  public ClientRegisterCommand(ClientInterface clientInterface, UserManagerFacade manager, Scanner reader) {
-    this.clientInterface = clientInterface;
-    this.manager = manager;
-    this.reader = reader;
+  public SellerRegisterCommand(SellerInterface sellerInterface) {
+    this.sellerInterface = sellerInterface;
   }
 
   // Implementação do comando
   @Override
   public void execute() throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException, CpfInvalidException {
-    clientInterface.registrationMenu(); // exibe o cabeçalho deste menu
+    sellerInterface.registrationMenu(); // exibe o cabeçalho deste menu
     System.out.println("       Insira o código de identificação       ");
     String id = reader.next();
     System.out.println("           Insira o login desejado            ");
