@@ -51,25 +51,32 @@ public final class UserManagerFacade {
     if (user != null) {
       if (user instanceof Seller) {
         Seller seller = (Seller) user;
-        // Atualize os atributos do vendedor com os novos valores
-        // seller.setCnpj(args[0]);
-        // seller.setName(args[1]);
-        // ...
-        System.out.println("Vendedor atualizado com sucesso!");
+        if (args.length >= 2) {
+          seller.setCnpj(args[0]);
+          seller.setName(args[1]);
+          // !Atualize os demais atributos do vendedor, se necessário
+          System.out.println("Vendedor atualizado com sucesso!");
+        } else {
+          System.out.println("Dados insuficientes para atualizar o vendedor.");
+        }
       } else if (user instanceof Client) {
         Client client = (Client) user;
-        // Atualize os atributos do cliente com os novos valores
-        // client.setCpf(args[0]);
-        // client.setName(args[1]);
-        // ...
-        System.out.println("Cliente atualizado com sucesso!");
+        if (args.length >= 2) {
+          client.setCpf(args[0]);
+          client.setName(args[1]);
+          //! Atualize os demais atributos do cliente, se necessário
+          System.out.println("Cliente atualizado com sucesso!");
+        } else {
+          System.out.println("Dados insuficientes para atualizar o cliente.");
+        }
       } else {
         System.out.println("Tipo de usuário não reconhecido.");
       }
+      userList.updateUser(); // Salve as alterações no usuário
     } else {
       System.out.println("Usuário não encontrado.");
     }
-  }  
+  }
   
   public void deleteUser(String id) {
     userList.deleteUser(id);
@@ -89,4 +96,25 @@ public final class UserManagerFacade {
       }
     }
   }
+
+  // Métodos de validação
+  public boolean checkUsernameExists(String username) {
+    for (User user : userList.getUsers().values()) {
+      if (user.getLogin().equals(username)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean checkPasswordMatchesUsername(String username, String password) {
+    for (User user : userList.getUsers().values()) {
+      if (user.getLogin().equals(username) && user.getPassword().equals(password)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+
 }

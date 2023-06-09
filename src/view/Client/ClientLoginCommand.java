@@ -2,6 +2,8 @@ package view.Client;
 
 import java.util.Scanner;
 
+import business.controller.UserManagerFacade;
+import util.exceptions.InfraException;
 import view.Command;
 
 public class ClientLoginCommand implements Command {
@@ -21,15 +23,19 @@ public class ClientLoginCommand implements Command {
     String username_input = reader.nextLine();
     System.out.print("Senha: ");
     String password_input = reader.nextLine();
-
-    /*//? Implementar limite de 3 tentativas
-    if (username_input.doesExist()) { // ! implementar verificação se o usernama existe no DB
-      if (password_input.doesMatchUsername()) { // ! implementar verificação se o usernama existe no DB
-        System.out.println("Login bem sucedido. Bem vindo, <nome>!");
-        clientInterface.operationsMenu(); // Chama o menu de operações
+    try {
+      if (UserManagerFacade.getInstance().checkUsernameExists(username_input)) {
+        if (UserManagerFacade.getInstance().checkPasswordMatchesUsername(username_input, password_input)) {
+          System.out.println("Login bem sucedido. Bem vindo, <nome>!");
+          clientInterface.operationsMenu(); // Chama o menu de operações
+        } else {
+          System.out.println("Username ou senha incorretos. Tente novamente. ");
+        }
       } else {
-        System.out.println("Username ou senha incorretos. Tente novamente. ");
+        System.out.println("Usuário não encontrado. Tente novamente. ");
       }
-    }*/
+    } catch(InfraException e) {
+      System.out.println("Ocorreu um erro na infraestrutura. Tente novamente mais tarde.");
+    }
   }
 }
