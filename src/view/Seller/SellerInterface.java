@@ -1,17 +1,36 @@
 package view.Seller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import util.exceptions.CnpjInvalidException;
 import view.FrontInterface;
+import business.controller.UserManagerFacade;
+import factories.ControllerFactory;
+import util.exceptions.InfraException;
+import view.Command;
+import view.ExitCommand;
 
 public class SellerInterface implements FrontInterface {
   private Scanner reader;
+  private UserManagerFacade manager;
+  private Map<Integer, Command> commandMap;
 
-  public SellerInterface() {
+
+public SellerInterface() throws InfraException{
     this.reader = new Scanner(System.in);
+    manager = ControllerFactory.newUserManagerFacade();
+    InitializeCommandMap();
   }
 
+  private void InitializeCommandMap() {
+    commandMap = new HashMap<>();
+    commandMap.put(1, new SellerRegisterCommand(this));
+    commandMap.put(2, new SellerLoginCommand(this));
+    commandMap.put(3, new ExitCommand(this));
+  }
+  
   public void menuMessage() {
     System.out.println("----------------------------------------------");
     System.out.println("          Little Hot Pot - Seller           ");
@@ -26,42 +45,23 @@ public class SellerInterface implements FrontInterface {
 
     try {
       int optionInt = reader.nextInt();
-      if (optionInt == 1) {
-        loginMenu();
-      } else if (optionInt == 2) {
-        registrationMenu();
+      if (commandMap.containsKey(optionInt)) {
+        Command command = commandMap.get(optionInt);
+        command.execute();
       } else {
-        System.out.println("Saindo do programa");
+        System.out.println("Opção indisponível. Tente novamente.");
       }
     } catch (Exception e) {
       System.out.println("Erro " + e + " encontrado. Tente novamente.");
     }
-
   }
 
-  // ! REALIZAR MESMO PROCEDIMENTO DE CLIENT
-  public void registrationMenu() throws LoginInvalidException, PasswordInvalidException, CnpjInvalidException {
+ 
+  public void registrationMenu() {
     System.out.println("----------------------------------------------");
     System.out.println("         Little Hot Pot - Seller Side         ");
     System.out.println("----------------------------------------------");
     System.out.println(">>> REGISTER");
-    System.out.println("       Insira o código de identificação       ");
-    int id = reader.nextInt();
-    System.out.println("           Insira o login desejado            ");
-    String login = reader.next();
-    System.out.println("           Insira a senha desejada            ");
-    String password = reader.nextLine();
-    System.out.println("            Insira o nome da loja             ");
-    String shopName = reader.nextLine();
-    System.out.println("                Insira o CNPJ                 ");
-    String cnpj = reader.next();
-
-    // simulação de cadastro, pois o cadastro esta a ser resolvido
-    System.out.println("Nome da Loja: " + shopName);
-    System.out.println("CNPJ: " + cnpj);
-    System.out.println("Login: " + login);
-    System.out.println("Senha: " + password);
-    System.out.println("ID: " + id);
   }
 
   public void loginMenu() {
@@ -73,9 +73,12 @@ public class SellerInterface implements FrontInterface {
 
   public void operationsMenu() {
     System.out.println("----------------------------------------------");
-    System.out.println("         Little Hot Pot - Seller Side         ");
+    System.out.println("         Little Hot Pot - Client Side         ");
     System.out.println("----------------------------------------------");
-    System.out.println(">>> Manage Orders from your clients and Products");
-    System.out.println("\nWould you like to read the instructions? ");
+    System.out.println(">>> Operations");
+    System.out.println("1 - Manager Menu");
+    System.out.println("2 - Update Account");
+    System.out.println("3 - Logout");
+    System.out.print("\nType an option: ");
   }
 }
