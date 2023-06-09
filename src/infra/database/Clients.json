@@ -1,0 +1,15 @@
+{"0":
+    {"login" : "januario123",
+     "password" : "1euamogatinhos1",
+     "name" : "Januario da Costa Silva",
+     "cpf" : "12312312323",
+     "order" : {"Salgadinho 2": 1, "Suco 3" : 1 }
+    },
+"1":
+    {"login" : "bielzinhu",
+     "password" : "amoagradeantiga",
+     "name" : "Gabriel Monteiro de Andrade",
+     "cpf" : "22312312323",
+     "order" : {"Salgadinho 4": 1, "Suco 1" : 2 }
+    }
+}

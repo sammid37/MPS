@@ -1,0 +1,22 @@
+{"0":
+    {"login" : "yaoyao",
+     "password" : "amigodavizinhanca99",
+     "name" : "Ysmahely Asevedo de Oliveira Filho",
+     "cnpj" : "12312312312323",
+     "menu" : "Yao Lanches"
+    },
+"1":
+    {"login" : "bodedoctdr",
+     "password" : "456selfservicebom",
+     "name" : "Paula de Souza",
+     "cnpj" : "22312312312323",
+     "menu" : "Bode Universitário"
+    },
+"2":
+    {"login" : "bardakelly",
+     "password" : "888ppfriendly888",
+     "name" : "Kelly",
+     "cnpj" : "32312312312323",
+     "menu" : "Bar da Kelly"
+    }
+}
